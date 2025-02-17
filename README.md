@@ -46,7 +46,41 @@ terraform apply
 
 Always commit your changes to ensure the repository accurately reflects the current infrastructure state.
 
-### 5️⃣ Destroying the Environment 🗑️
+
+### 5️⃣ Display Infrastructure Details 🌐
+
+After applying your configuration, you can easily find your server’s IP address by displaying the infrastructure details. Use the following command to filter the output and show only the IPv4 address:
+
+```bash
+terraform show | grep "ipv4_address"
+```
+
+This command extracts the line containing the IPv4 address of your server.
+
+### 6️⃣ Connect to the Server via SSH 🔐
+
+Once you have obtained the server's IP address, you can connect using SSH. If your SSH key is in the default path (`~/.ssh/id_rsa.pub`), Terraform automatically sets it up for access:
+
+```bash
+ssh root@<server-ip>
+```
+
+Replace `<server-ip>` with the actual IP address obtained from the previous command.
+
+### Example Usage
+
+```bash
+# Show the current state of the infrastructure and filter for IP addresses
+terraform show | grep "ipv4_address"
+
+# Suppose the output is:
+# ipv4_address = "123.45.67.89"
+
+# Connect to the server using SSH
+ssh root@123.45.67.89
+```
+
+### 7️⃣ Destroying the Environment 🗑️
 
 When the server is no longer needed, remove the infrastructure by running:
 
