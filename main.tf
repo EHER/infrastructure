@@ -29,7 +29,7 @@ resource "digitalocean_droplet" "docker_droplet" {
   user_data  = <<-EOF
     #!/bin/bash
     apt update
-    apt install --yes docker.io docker-compose
+    DEBIAN_FRONTEND=noninteractive apt install --yes docker.io docker-compose
     curl -o docker-compose.yml https://raw.githubusercontent.com/EHER/deployment/main/docker-compose.yml
     curl -o .env https://raw.githubusercontent.com/EHER/deployment/main/.env.dist
     docker-compose up -d
