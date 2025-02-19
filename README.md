@@ -46,8 +46,23 @@ terraform apply
 
 Always commit your changes to ensure the repository accurately reflects the current infrastructure state.
 
+### 5️⃣ Firewall Configuration 🔒
 
-### 5️⃣ Display Infrastructure Details 🌐
+The setup includes a secure firewall configuration to protect your infrastructure. Here are the key details:
+
+- **SSH Access (Port 22)**: The firewall only allows SSH connections from your current public IP address. This enhances security by preventing unauthorized access.
+
+- **Admin Panel (Port 81)**: Similarly, access to the admin panel, typically used for proxy server management, is restricted to your current public IP address, ensuring that only authorized users can perform administrative tasks.
+
+- **Web and Email Services Ports**:
+  - **Port 80/443**: These are open to the world, allowing HTTP and HTTPS traffic, essential for web services.
+  - **Port 25/465/587**: Commonly used for email traffic, these are also open to accommodate standard email operations.
+
+- **Outbound Rules**: The firewall allows all outgoing traffic, which is necessary for server updates and communication with other services.
+
+By adhering to these configurations, the infrastructure is designed to balance security with functionality, protecting against unauthorized access while allowing necessary operations.
+
+### 6️⃣ Display Infrastructure Details 🌐
 
 After applying your configuration, you can easily find your server’s IP address by displaying the infrastructure details. Use the following command to filter the output and show only the IPv4 address:
 
@@ -57,7 +72,7 @@ terraform show | grep "ipv4_address"
 
 This command extracts the line containing the IPv4 address of your server.
 
-### 6️⃣ Connect to the Server via SSH 🔐
+### 7️⃣ Connect to the Server via SSH 🔐
 
 Once you have obtained the server's IP address, you can connect using SSH. If your SSH key is in the default path (`~/.ssh/id_rsa.pub`), Terraform automatically sets it up for access:
 
@@ -118,4 +133,3 @@ This method ensures your credentials remain outside the codebase while keeping t
 ---
 
 ✨ Keeping this repository updated ensures a consistent and reproducible infrastructure setup. ✨
-
